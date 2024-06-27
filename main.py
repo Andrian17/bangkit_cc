@@ -10,6 +10,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from werkzeug.utils import secure_filename
 
+from src.firebase_module import postUsers, getUsers
+from src.sayang_air_data import water_using, get_data_by_email
+
 from src.firebase_module import postUsers
 
 app = Flask(__name__)
@@ -93,6 +96,19 @@ def predict_nik(image):
 def hello_world():
     resultTest = "<html> <p>Endpoint : /predict</p><p>Method : POST</p><p>Body/Payload :</p><pre>{image: image(file image), email: Youremail@test.com}<pre></html>"
     return resultTest
+
+
+@app.route("/users", methods = ["GET"])
+def get_users():
+    return getUsers()
+
+@app.route("/sayang-air", methods = ["GET"])
+def get_water_using():
+    return water_using
+
+@app.route("/sayang-air/<email>", methods = ["GET"])
+def get_water_using_by_email(email):
+    return get_data_by_email(email)
 
 @app.route("/prediction", methods=["POST"])
 def predict_route():

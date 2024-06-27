@@ -49,3 +49,8 @@ def postUsers(email, nik):
     # Example: Read data from the database
     snapshot = root_ref.child('users').get()
     return snapshot
+
+
+def getUsers():
+    data = root_ref.child("users").get()
+    return data
