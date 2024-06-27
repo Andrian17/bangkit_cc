@@ -94,7 +94,7 @@ def predict_nik(image):
 
 @app.route("/")
 def hello_world():
-    resultTest = "<html> <p>Endpoint : /predict</p><p>Method : POST</p><p>Body/Payload :</p><pre>{image: image(file image), email: Youremail@test.com}<pre></html>"
+    resultTest = "Hello World"
     return resultTest
 
 
