@@ -96,14 +96,6 @@ jobs:
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
           allow-unauthenticated: true
-          spec:
-            env:
-            - name: $PORT
-                value: ${{env.PORT}}
-          resources:
-              requests:
-                memory: "8Gi"
-                cpu: "4"
           # NOTE: If using a pre-built image, update the image name here
           image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{env.GAR_NAME}}/${{ env.SERVICE }}:${{ github.sha }}
 
