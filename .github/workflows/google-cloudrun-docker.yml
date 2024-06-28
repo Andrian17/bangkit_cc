@@ -83,10 +83,13 @@ jobs:
         run: |-
           gcloud auth configure-docker "${{env.GAR_LOCATION}}-docker.pkg.dev"
 
+      - name: Set FIREBASE_CREDENTIALS
+        run: |-
+          echo "${{ env.FIREBASE_CREDENTIALS }}" | base64 --decode > sayang-air.json
+          echo "${{ env.FIREBASE_CREDENTIALS }}" | base64 --decode > /src/sayang-air.json
+
       - name: Build and Push Container
         run: |-
-          echo ${{ env.FIREBASE_CREDENTIALS }} | base64 --decode > sayang-air.json
-          echo ${{ env.FIREBASE_CREDENTIALS }} | base64 --decode > /src/sayang-air.json
           docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{env.GAR_NAME}}/${{ env.SERVICE }}:${{ github.sha }}" ./
           docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{env.GAR_NAME}}/${{ env.SERVICE }}:${{ github.sha }}"
 
