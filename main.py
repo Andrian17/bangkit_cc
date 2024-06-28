@@ -94,7 +94,7 @@ def predict_nik(image):
 
 @app.route("/")
 def hello_world():
-    resultTest = "Hello World!, ini adalah endpoint dari API sayang air"
+    resultTest = "Hello World!"
     return resultTest
 
 
