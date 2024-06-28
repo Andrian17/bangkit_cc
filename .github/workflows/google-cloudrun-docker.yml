@@ -53,7 +53,7 @@ env:
   GAR_LOCATION: asia-southeast2 # TODO: update Artifact Registry location
   GAR_NAME: cicd-test # TODO: update Artifact Registry location
   SERVICE: cc-cicd # TODO: update Cloud Run service name
-  REGION: asia-southeast2 # TODO: update Cloud Run service region
+  REGION: us-east1 # TODO: update Cloud Run service region
   PORT: 8080
   FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
 
