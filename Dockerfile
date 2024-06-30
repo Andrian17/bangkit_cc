@@ -10,20 +10,14 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-
 # Install system dependencies
 RUN apt-get update && apt-get install libgl1-mesa-glx -y
-
-
 
 # Install production dependencies.
 RUN apt-get install ffmpeg libsm6 libxext6 -y
 RUN python -m pip install --upgrade pip
 RUN pip install gunicorn
 RUN pip install -r requirements.txt
-
-
-
 
 # Set environment variable for libGL.so.1
 ENV LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/mesa

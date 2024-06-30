@@ -122,18 +122,6 @@ def predict_route():
 
             nik = predict_nik(image_path)
 
-            # if len(nik) < 10:
-            #     return jsonify({
-            #     "status": {
-            #         "code": 400,
-            #         "message": "KTP invalid!"
-            #     },
-            #     "data": {
-            #         "nik": nik,
-            #         "email": email_user
-            #     }
-            # }), 400
-
             result_post = postUsers(email_user, nik)
 
             if result_post:
