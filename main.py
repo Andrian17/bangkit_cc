@@ -1,4 +1,6 @@
+
 import os
+from unittest import result
 
 from flask import Flask, jsonify, request
 from PIL import Image
@@ -108,7 +110,19 @@ def get_water_using():
 
 @app.route("/sayang-air/<email>", methods = ["GET"])
 def get_water_using_by_email(email):
-    return get_data_by_email(email)
+    if get_data_by_email(email):
+        return get_data_by_email(email)
+    return jsonify({
+        "code": 404,
+        "message": "data tidak ditemukan!"
+    }), 404
+
+@app.route("/register", methods=["POST"])
+def register():
+    if request.method == "POST":
+        result = postUsers(request.form.get("email"), request.form.get("nik"))
+        return result
+        
 
 @app.route("/prediction", methods=["POST"])
 def predict_route():

@@ -36,4 +36,4 @@ def get_data_by_email(email):
     for data in water_using:
         if data["email"] == email:
             return data
-    return {}
+    return False
