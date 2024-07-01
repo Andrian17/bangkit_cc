@@ -84,7 +84,7 @@ jobs:
 
       - name: Set FIREBASE_CREDENTIALS
         run: |-
-          echo "${{ env.FIREBASE_CREDENTIALS }}" | base64 --decode > sayang-air.json
+          echo "${{ secrets.FIREBASE_CREDENTIALS }}" | base64 --decode > sayang-air.json
 
       - name: Build and Push Container
         run: |-
