@@ -25,6 +25,7 @@
 
 import firebase_admin
 from firebase_admin import credentials
+from pandas import to_numeric
 
 # Path to the downloaded Firebase Admin SDK JSON file
 cred = credentials.Certificate("sayang-air.json")
@@ -54,3 +55,17 @@ def postUsers(email, nik):
 def getUsers():
     data = root_ref.child("users").get()
     return data
+
+def pdamWaterUsage():
+    data = root_ref.child("pdam_water_usage").get()
+    return data
+
+def pdamWaterUsageById(NIK):
+    print(NIK)
+    data = pdamWaterUsage()
+    for d in data:
+        if to_numeric(d) == to_numeric(d):
+            return data[d]
+    return False
+
+# print(pdamWaterUsageById(2205024205020003))

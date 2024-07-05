@@ -1,4 +1,3 @@
-
 import os
 from unittest import result
 
@@ -12,7 +11,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from werkzeug.utils import secure_filename
 
-from src.firebase_module import postUsers, getUsers
+from src.firebase_module import pdamWaterUsage, pdamWaterUsageById, postUsers, getUsers
 from src.sayang_air_data import water_using, get_data_by_email
 
 from src.firebase_module import postUsers
@@ -116,6 +115,20 @@ def get_water_using_by_email(email):
         "code": 404,
         "message": "data tidak ditemukan!"
     }), 404
+
+@app.route("/water-usage", methods = ["GET"])
+def get_water_usage():
+    return pdamWaterUsage()
+
+@app.route("/water-usage/<NIK>", methods = ["GET"])
+def get_water_usage_by_id(NIK):
+    if pdamWaterUsageById(NIK):
+        return pdamWaterUsageById(NIK)
+    return jsonify({
+        "code": 404,
+        "message": "data tidak ditemukan!"
+    }), 404
+
 
 @app.route("/register", methods=["POST"])
 def register():
