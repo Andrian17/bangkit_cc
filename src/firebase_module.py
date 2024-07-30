@@ -22,9 +22,9 @@
 # snapshot = root_ref.child('data').get()
 # print(snapshot.val())
 
-
 import firebase_admin
 from firebase_admin import credentials
+from flask import jsonify
 from pandas import to_numeric
 
 # Path to the downloaded Firebase Admin SDK JSON file
@@ -69,3 +69,43 @@ def pdamWaterUsageById(NIK):
     return False
 
 # print(pdamWaterUsageById(2205024205020003))
+
+def getArticle():
+    article = root_ref.child("article").get()
+    return article
+
+def getArticleById(id):
+    dataById = root_ref.child("article").get()
+    if id:
+        return dataById[int(id)]
+
+def postArticle(article, id):
+    # test
+    # Example: Push data to the database
+    # Push data ke database
+    new_data_ref = root_ref.child('article').child(str(id)).set(article)
+    
+    # Membaca data dari database
+    snapshot = root_ref.child('article').child(str(id)).get()
+    return snapshot
+    # Example: Read data from the database
+    # snapshot = root_ref.child('article').get()
+    # return snapshot
+
+def updateArticle(article, id):
+    # test
+    # Example: Push data to the database
+    # Push data ke database
+    new_data_ref = root_ref.child('article').child(str(id)).set(article)
+    
+    # Membaca data dari database
+    snapshot = root_ref.child('article').child(str(id)).get()
+    return snapshot
+    # Example: Read data from the database
+    # snapshot = root_ref.child('article').get()
+    # return snapshot
+
+
+def deleteArticle(id):
+    result = root_ref.child("article").child(str(id)).delete()
+    return result

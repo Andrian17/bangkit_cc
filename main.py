@@ -1,3 +1,4 @@
+
 import os
 from unittest import result
 
@@ -11,7 +12,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from werkzeug.utils import secure_filename
 
-from src.firebase_module import pdamWaterUsage, pdamWaterUsageById, postUsers, getUsers
+from src.firebase_module import deleteArticle, getArticle, getArticleById, pdamWaterUsage, pdamWaterUsageById, postArticle, postUsers, getUsers, updateArticle
 from src.sayang_air_data import water_using, get_data_by_email
 
 from src.firebase_module import postUsers
@@ -128,6 +129,73 @@ def get_water_usage_by_id(NIK):
         "code": 404,
         "message": "data tidak ditemukan!"
     }), 404
+
+
+@app.route("/article", methods = ["GET"])
+def get_article():
+    return getArticle()
+
+@app.route("/article/<id>", methods = ["GET"])
+def get_article_by_id(id):
+    return getArticleById(id=id)
+
+@app.route("/article", methods=["POST"])
+def post_article():
+    if request.method == "POST":
+        try:
+            id_data = request.form.get("id")
+            article = {
+                    "backgroundStory": request.form.get("backgroundStory"),
+                    "contactInfo": request.form.get("contactInfo"),
+                    "date": request.form.get("date"),
+                    "description": request.form.get("description"),
+                    "donationMethod": request.form.get("donationMethod"),
+                    "donationTarget": request.form.get("donationTarget"),
+                    "financialTransparency": request.form.get("financialTransparency"),
+                    "goal": request.form.get("goal"),
+                    "id": request.form.get("id"),
+                    "image": request.form.get("image"),
+                    "recipient": request.form.get("recipient"),
+                    "title": request.form.get("title"),
+                    "updatesAndThanks": request.form.get("updatesAndThanks"),    
+                    "visualSupport": request.form.get("visualSupport")
+                }
+            result = postArticle(article, id_data)
+            return jsonify(result), 200
+        except Exception as e:
+            return jsonify({"error": str(e)}), 400
+
+@app.route("/article", methods=["PUT"])
+def update_article():
+    if request.method == "POST":
+        try:
+            id_data = request.form.get("id")
+            article = {
+                    "backgroundStory": request.form.get("backgroundStory"),
+                    "contactInfo": request.form.get("contactInfo"),
+                    "date": request.form.get("date"),
+                    "description": request.form.get("description"),
+                    "donationMethod": request.form.get("donationMethod"),
+                    "donationTarget": request.form.get("donationTarget"),
+                    "financialTransparency": request.form.get("financialTransparency"),
+                    "goal": request.form.get("goal"),
+                    "id": request.form.get("id"),
+                    "image": request.form.get("image"),
+                    "recipient": request.form.get("recipient"),
+                    "title": request.form.get("title"),
+                    "updatesAndThanks": request.form.get("updatesAndThanks"),    
+                    "visualSupport": request.form.get("visualSupport")
+                }
+            result = updateArticle(article, id_data)
+            return jsonify(result), 200
+        except Exception as e:
+            return jsonify({"error": str(e)}), 400
+
+@app.route("/article/<id>", methods=["DELETE"])
+def delete_article(id):
+    if request.method == "DELETE":
+        result = deleteArticle(id)
+        return jsonify(result), 200
 
 
 @app.route("/register", methods=["POST"])
