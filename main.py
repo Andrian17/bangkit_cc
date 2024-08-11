@@ -96,7 +96,7 @@ def predict_nik(image):
 
 @app.route("/")
 def hello_world():
-    resultTest = "Hello World! Web Service Backend Sayang AIR!"
+    resultTest = "Hello World! Web Service Sayang AIR!"
     return resultTest
 
 
@@ -145,21 +145,21 @@ def post_article():
         try:
             id_data = request.form.get("id")
             article = {
-                    "backgroundStory": request.form.get("backgroundStory"),
-                    "contactInfo": request.form.get("contactInfo"),
-                    "date": request.form.get("date"),
-                    "description": request.form.get("description"),
-                    "donationMethod": request.form.get("donationMethod"),
-                    "donationTarget": request.form.get("donationTarget"),
-                    "financialTransparency": request.form.get("financialTransparency"),
-                    "goal": request.form.get("goal"),
-                    "id": request.form.get("id"),
-                    "image": request.form.get("image"),
-                    "recipient": request.form.get("recipient"),
-                    "title": request.form.get("title"),
-                    "updatesAndThanks": request.form.get("updatesAndThanks"),    
-                    "visualSupport": request.form.get("visualSupport")
-                }
+                "backgroundStory": request.form.get("backgroundStory"),
+                "contactInfo": request.form.get("contactInfo"),
+                "date": request.form.get("date"),
+                "description": request.form.get("description"),
+                "donationMethod": request.form.get("donationMethod"),
+                "donationTarget": request.form.get("donationTarget"),
+                "financialTransparency": request.form.get("financialTransparency"),
+                "goal": request.form.get("goal"),
+                "id": request.form.get("id"),
+                "image": request.form.get("image"),
+                "recipient": request.form.get("recipient"),
+                "title": request.form.get("title"),
+                "updatesAndThanks": request.form.get("updatesAndThanks"),    
+                "visualSupport": request.form.get("visualSupport")
+            }
             result = postArticle(article, id_data)
             return jsonify(result), 200
         except Exception as e:
@@ -171,21 +171,21 @@ def update_article():
         try:
             id_data = request.form.get("id")
             article = {
-                    "backgroundStory": request.form.get("backgroundStory"),
-                    "contactInfo": request.form.get("contactInfo"),
-                    "date": request.form.get("date"),
-                    "description": request.form.get("description"),
-                    "donationMethod": request.form.get("donationMethod"),
-                    "donationTarget": request.form.get("donationTarget"),
-                    "financialTransparency": request.form.get("financialTransparency"),
-                    "goal": request.form.get("goal"),
-                    "id": request.form.get("id"),
-                    "image": request.form.get("image"),
-                    "recipient": request.form.get("recipient"),
-                    "title": request.form.get("title"),
-                    "updatesAndThanks": request.form.get("updatesAndThanks"),    
-                    "visualSupport": request.form.get("visualSupport")
-                }
+                "backgroundStory": request.form.get("backgroundStory"),
+                "contactInfo": request.form.get("contactInfo"),
+                "date": request.form.get("date"),
+                "description": request.form.get("description"),
+                "donationMethod": request.form.get("donationMethod"),
+                "donationTarget": request.form.get("donationTarget"),
+                "financialTransparency": request.form.get("financialTransparency"),
+                "goal": request.form.get("goal"),
+                "id": request.form.get("id"),
+                "image": request.form.get("image"),
+                "recipient": request.form.get("recipient"),
+                "title": request.form.get("title"),
+                "updatesAndThanks": request.form.get("updatesAndThanks"),    
+                "visualSupport": request.form.get("visualSupport")
+            }
             result = updateArticle(article, id_data)
             return jsonify(result), 200
         except Exception as e:
