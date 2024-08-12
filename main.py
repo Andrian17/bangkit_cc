@@ -99,6 +99,10 @@ def hello_world():
     resultTest = "Hello World! Web Service Sayang AIR!"
     return resultTest
 
+@app.route("/test")
+def hello_world():
+    return "Test"
+
 
 @app.route("/users", methods = ["GET"])
 def get_users():
